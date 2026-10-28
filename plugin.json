@@ -1,0 +1,109 @@
+{
+  "tesserae_compat": "1.x",
+  "name": "Meteors & Eclipses",
+  "version": "0.1.0",
+  "kind": "widget",
+  "description": "The meteor showers and eclipses coming up, with the Moon's interference worked out for your place: each shower's peak night, expected rate, best hour, how high its radiant climbs, and how much moonlight there is. Lunar eclipses are checked against your horizon and solar eclipses against your continent. Everything is computed from a bundled table, so it needs no network.",
+  "icon": "ph-shooting-star",
+  "category": "time",
+  "supports": {
+    "sizes": [
+      "xs",
+      "sm",
+      "md",
+      "lg"
+    ]
+  },
+  "requires": [],
+  "render": {
+    "needs_network": false
+  },
+  "cell_options": [
+    {
+      "name": "location",
+      "type": "location_search",
+      "label": "Place",
+      "help": "Where the sky is watched from. Sets how high each radiant climbs, whether the Moon is up, and which eclipses are visible. Falls back to the app-level location in Settings when empty.",
+      "default": ""
+    },
+    {
+      "name": "layout",
+      "type": "select",
+      "label": "Layout",
+      "default": "timeline",
+      "help": "Timeline draws the coming months on one rule with a glyph per event. Next event is one shower or eclipse large, with the three after it as lines.",
+      "choices": [
+        {
+          "value": "timeline",
+          "label": "Timeline"
+        },
+        {
+          "value": "next",
+          "label": "Next event"
+        }
+      ]
+    },
+    {
+      "name": "months",
+      "type": "select",
+      "label": "How many months",
+      "default": "4",
+      "help": "How far the timeline runs, starting from the first of this month.",
+      "show_if": {
+        "layout": "timeline"
+      },
+      "choices": [
+        {
+          "value": "3",
+          "label": "3 months"
+        },
+        {
+          "value": "4",
+          "label": "4 months"
+        },
+        {
+          "value": "6",
+          "label": "6 months"
+        }
+      ]
+    },
+    {
+      "name": "show_eclipses",
+      "type": "boolean",
+      "label": "Eclipses",
+      "default": true,
+      "help": "Solar and lunar eclipses alongside the showers."
+    },
+    {
+      "name": "only_visible",
+      "type": "boolean",
+      "label": "Only what is visible from here",
+      "default": false,
+      "help": "Hides showers whose radiant never rises at this place, lunar eclipses with the Moon below the horizon, and solar eclipses that miss this continent."
+    },
+    {
+      "name": "title",
+      "type": "string",
+      "label": "Title",
+      "default": "Meteors & Eclipses",
+      "help": "The heading. Leave empty to hide it.",
+      "advanced": true
+    }
+  ],
+  "fragments": [
+    {
+      "id": "timeline",
+      "label": "Timeline",
+      "w": 480,
+      "h": 240,
+      "icon": "ph-shooting-star"
+    },
+    {
+      "id": "next",
+      "label": "Next event",
+      "w": 320,
+      "h": 320,
+      "icon": "ph-sparkle"
+    }
+  ]
+}
